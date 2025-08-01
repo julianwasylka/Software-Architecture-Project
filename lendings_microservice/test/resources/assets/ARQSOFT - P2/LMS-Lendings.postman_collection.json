@@ -1,0 +1,1337 @@
+{
+	"info": {
+		"_postman_id": "2f456f0e-23a5-49e3-8f0e-46b2b1848dcf",
+		"name": "LMS-Lendings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26350149"
+	},
+	"item": [
+		{
+			"name": "Readers",
+			"item": [
+				{
+					"name": "As Reader",
+					"item": [
+						{
+							"name": "GetReaderLendingsByIsbn",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/readers/2024/1/lendings?isbn=9782722203402",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"readers",
+										"2024",
+										"1",
+										"lendings"
+									],
+									"query": [
+										{
+											"key": "isbn",
+											"value": "9782722203402"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetReaderLendingsByIsbn - invalid isbn",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Not Found\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(404); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/readers/2024/1/lendings?isbn=9782722203403",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"readers",
+										"2024",
+										"1",
+										"lendings"
+									],
+									"query": [
+										{
+											"key": "isbn",
+											"value": "9782722203403"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{readerToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "As Librarian",
+					"item": [
+						{
+							"name": "GetTop5ReadersByGenreForCertainTime",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/readers/top5ByGenre?genre=Infantil&startDate=2024-01-01&endDate=2024-06-30",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"readers",
+										"top5ByGenre"
+									],
+									"query": [
+										{
+											"key": "genre",
+											"value": "Infantil"
+										},
+										{
+											"key": "startDate",
+											"value": "2024-01-01"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-06-30"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetTop5ReadersByGenreForCertainTime - invalid genre",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Not Found\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(404); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/readers/top5ByGenre?genre=Comédia&startDate=2024-01-01&endDate=2024-06-30",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"readers",
+										"top5ByGenre"
+									],
+									"query": [
+										{
+											"key": "genre",
+											"value": "Comédia"
+										},
+										{
+											"key": "startDate",
+											"value": "2024-01-01"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-06-30"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Top 5 Readers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Not Found\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(404); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/readers/top5",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"readers",
+										"top5"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{librarianToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "As Librarian",
+					"item": [
+						{
+							"name": "Get Top 5 Books Lent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/books/top5",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"books",
+										"top5"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{librarianToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "As Reader",
+					"item": [
+						{
+							"name": "Get Book Suggestions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Not Found\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(404); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/books/suggestions",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"books",
+										"suggestions"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{readerToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "As Reader",
+					"item": [
+						{
+							"name": "Top5Authors",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/authors/top5",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"authors",
+										"top5"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{readerToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Genres",
+			"item": [
+				{
+					"name": "As Librarian",
+					"item": [
+						{
+							"name": "Get Top 5 Genres",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/genres/top5",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"genres",
+										"top5"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{librarianToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Lendings",
+			"item": [
+				{
+					"name": "As Librarian",
+					"item": [
+						{
+							"name": "Lend Book",
+							"item": [
+								{
+									"name": "LendBook",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Created\", function(){\r",
+													"\r",
+													"    pm.response.to.have.status(201); \r",
+													"\r",
+													"    let lending = postman.getResponseHeader(\"ETag\");\r",
+													"    pm.environment.set(\"lendingEtag\", lending); \r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{librarianToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isbn\": \"9782722203402\",\r\n    \"readerNumber\": \"2025/7\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host_lendings}}{{baseUrl}}/lendings",
+											"host": [
+												"{{host_lendings}}{{baseUrl}}"
+											],
+											"path": [
+												"lendings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "LendBook - Reader has 3 lendings",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Bad Request\", function(){\r",
+													"\r",
+													"    pm.response.to.have.status(400); \r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{librarianToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isbn\": \"9782722203402\",\r\n    \"readerNumber\": \"2025/2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host_lendings}}{{baseUrl}}/lendings",
+											"host": [
+												"{{host_lendings}}{{baseUrl}}"
+											],
+											"path": [
+												"lendings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "LendBook - Reader has overdue lendings",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Bad Request\", function(){\r",
+													"\r",
+													"    pm.response.to.have.status(400); \r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{librarianToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isbn\": \"9782722203402\",\r\n    \"readerNumber\": \"2025/3\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host_lendings}}{{baseUrl}}/lendings",
+											"host": [
+												"{{host_lendings}}{{baseUrl}}"
+											],
+											"path": [
+												"lendings"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "GetLending",
+							"item": [
+								{
+									"name": "GetLending - not returned, not over limit",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"OK\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"    let lending = pm.response.headers.get(\"ETag\");\r",
+													"    pm.environment.set(\"lendingEtag\", lending);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'returnedDate' is null\", function () {\r",
+													"    pm.expect(pm.response.json().returnedDate).to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'daysOverdue' is null\", function () {\r",
+													"    pm.expect(pm.response.json().daysOverdue).to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'daysUntilReturn' is not null\", function () {\r",
+													"    pm.expect(pm.response.json().daysUntilReturn).not.to.be.null;\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{librarianToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host_lendings}}{{baseUrl}}/lendings/2025/35",
+											"host": [
+												"{{host_lendings}}{{baseUrl}}"
+											],
+											"path": [
+												"lendings",
+												"2025",
+												"35"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetLending - returned, not over limit",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"OK\", function(){\r",
+													"\r",
+													"    pm.response.to.have.status(200); \r",
+													"    \r",
+													"    let lending = postman.getResponseHeader(\"ETag\");\r",
+													"    pm.environment.set(\"lendingEtag\", lending); \r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'returnedDate' is not null\", function () {\r",
+													"    pm.expect(pm.response.json().returnedDate).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'daysOverdue' is null\", function () {\r",
+													"    pm.expect(pm.response.json().daysOverdue).to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'daysUntilReturn' is null\", function () {\r",
+													"    pm.expect(pm.response.json().daysUntilReturn).to.be.null;\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{librarianToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host_lendings}}{{baseUrl}}/lendings/2025/13",
+											"host": [
+												"{{host_lendings}}{{baseUrl}}"
+											],
+											"path": [
+												"lendings",
+												"2025",
+												"13"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetLending - not returned, overdue",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"OK\", function(){\r",
+													"\r",
+													"    pm.response.to.have.status(200); \r",
+													"    \r",
+													"    let lending = postman.getResponseHeader(\"ETag\");\r",
+													"    pm.environment.set(\"lendingEtag\", lending); \r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'returnedDate' is null\", function () {\r",
+													"    pm.expect(pm.response.json().returnedDate).to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'daysOverdue' is not null\", function () {\r",
+													"    pm.expect(pm.response.json().daysOverdue).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'daysUntilReturn' is null\", function () {\r",
+													"    pm.expect(pm.response.json().daysUntilReturn).to.be.null;\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{librarianToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host_lendings}}{{baseUrl}}/lendings/2025/8",
+											"host": [
+												"{{host_lendings}}{{baseUrl}}"
+											],
+											"path": [
+												"lendings",
+												"2025",
+												"8"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetLending - returned, over limit",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"OK\", function(){\r",
+													"\r",
+													"    pm.response.to.have.status(200); \r",
+													"    \r",
+													"    let lending = postman.getResponseHeader(\"ETag\");\r",
+													"    pm.environment.set(\"lendingEtag\", lending); \r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'returnedDate' is not null\", function () {\r",
+													"    pm.expect(pm.response.json().returnedDate).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'daysOverdue' is not null\", function () {\r",
+													"    pm.expect(pm.response.json().daysOverdue).not.to.be.null;\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Check if 'daysUntilReturn' is null\", function () {\r",
+													"    pm.expect(pm.response.json().daysUntilReturn).to.be.null;\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{librarianToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host_lendings}}{{baseUrl}}/lendings/2025/3",
+											"host": [
+												"{{host_lendings}}{{baseUrl}}"
+											],
+											"path": [
+												"lendings",
+												"2025",
+												"3"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "getLendingsPerMonthLastYearByGenre",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/genres/lendingsPerMonthLastTwelveMonths",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"genres",
+										"lendingsPerMonthLastTwelveMonths"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAverageLendingsPerGenre",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"page\": {\r\n        \"number\" : 1,\r\n        \"limit\" : 10\r\n    },\r\n    \"query\": {\r\n        \"year\" : 2024,\r\n        \"month\" : 5\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/genres/avgLendingsPerGenre",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"genres",
+										"avgLendingsPerGenre"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAverageLendings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/genres/avgLendings?period=day&start=2025-05-01&end=2025-05-31",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"genres",
+										"avgLendings"
+									],
+									"query": [
+										{
+											"key": "period",
+											"value": "day"
+										},
+										{
+											"key": "start",
+											"value": "2025-05-01"
+										},
+										{
+											"key": "end",
+											"value": "2025-05-31"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAverageDuration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200);  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/lendings/avgDuration",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"lendings",
+										"avgDuration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetOverdueLendings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"number\": 1,\r\n    \"limit\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/lendings/overdue",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"lendings",
+										"overdue"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{librarianToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "As Reader",
+					"item": [
+						{
+							"name": "ReaderGetLending",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"    pm.response.to.have.status(200); \r",
+											"\r",
+											"    let lending = postman.getResponseHeader(\"ETag\");\r",
+											"    pm.environment.set(\"lendingEtag\", lending); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/lendings/2025/7",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"lendings",
+										"2025",
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SetReturned",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"commentary\": \"Não gostei\",\r\n    \"isPositive\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host_lendings}}{{baseUrl}}/lendings/2025/7",
+									"host": [
+										"{{host_lendings}}{{baseUrl}}"
+									],
+									"path": [
+										"lendings",
+										"2025",
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{readerToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
