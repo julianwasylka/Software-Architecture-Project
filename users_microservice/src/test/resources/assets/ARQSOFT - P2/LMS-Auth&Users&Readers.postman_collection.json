@@ -1,0 +1,595 @@
+{
+	"info": {
+		"_postman_id": "52964ceb-c123-450c-9000-4c3888445b7b",
+		"name": "LMS-Auth&Users&Readers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26350149"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login as Librarian",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Authtenticates\", function(){\r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"    let token = postman.getResponseHeader(\"Authorization\");\r",
+									"    pm.environment.set(\"librarianToken\", token);    \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"maria@gmail.com\",\r\n    \"password\": \"Mariaroberta!123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_users_readers}}{{baseUrl}}/public/login",
+							"host": [
+								"{{host_users_readers}}{{baseUrl}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Reader",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Authtenticates\", function(){\r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"    let token = postman.getResponseHeader(\"Authorization\");\r",
+									"    pm.environment.set(\"readerToken\", token);    \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"manuel@gmail.com\",\r\n    \"password\": \"Manuelino123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_users_readers}}{{baseUrl}}/public/login",
+							"host": [
+								"{{host_users_readers}}{{baseUrl}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Reader 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Authtenticates\", function(){\r",
+									"\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"    let token = postman.getResponseHeader(\"Authorization\");\r",
+									"    pm.environment.set(\"readerToken\", token);    \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"antonio@gmail.com\",\r\n    \"password\": \"Antoniocosta!123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_users_readers}}{{baseUrl}}/public/login",
+							"host": [
+								"{{host_users_readers}}{{baseUrl}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Readers",
+			"item": [
+				{
+					"name": "As Reader",
+					"item": [
+						{
+							"name": "Update Data as Reader",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){",
+											"    pm.response.to.have.status(200); ",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{readerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fullName",
+											"value": "Manuel Novo Nome",
+											"type": "text"
+										},
+										{
+											"key": "interestList[]",
+											"value": "Romance",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host_users_readers}}{{baseUrl}}/readers",
+									"host": [
+										"{{host_users_readers}}{{baseUrl}}"
+									],
+									"path": [
+										"readers"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{readerToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "As Anonymous",
+					"item": [
+						{
+							"name": "Register as Reader without interests",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"CREATED\", function(){",
+											"",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "reader@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "PassBrava!123",
+											"type": "text"
+										},
+										{
+											"key": "fullName",
+											"value": "Ricardo França",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "1994-12-08",
+											"type": "text"
+										},
+										{
+											"key": "phoneNumber",
+											"value": "912345678",
+											"type": "text"
+										},
+										{
+											"key": "gdpr",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "marketing",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "thirdParty",
+											"value": "true",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host_users_readers}}{{baseUrl}}/readers",
+									"host": [
+										"{{host_users_readers}}{{baseUrl}}"
+									],
+									"path": [
+										"readers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register as Reader with interests",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"CREATED\", function(){",
+											"",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "1220956@isep.ipp.pt",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "PasswordSuper!123",
+											"type": "text"
+										},
+										{
+											"key": "fullName",
+											"value": "Eduardo Sarapinto da Silveira",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "2004-10-17",
+											"type": "text"
+										},
+										{
+											"key": "phoneNumber",
+											"value": "987314512",
+											"type": "text"
+										},
+										{
+											"key": "gdpr",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "marketing",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "thirdParty",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "interestList[]",
+											"value": "Fantasia",
+											"type": "text"
+										},
+										{
+											"key": "interestList[]",
+											"value": "Infantil",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host_users_readers}}{{baseUrl}}/readers",
+									"host": [
+										"{{host_users_readers}}{{baseUrl}}"
+									],
+									"path": [
+										"readers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "As Librarian",
+					"item": [
+						{
+							"name": "Get reader by name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{librarianToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_users_readers}}{{baseUrl}}/readers?name=Manuel",
+									"host": [
+										"{{host_users_readers}}{{baseUrl}}"
+									],
+									"path": [
+										"readers"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Manuel"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get reader by reader number",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){",
+											"    pm.response.to.have.status(200); ",
+											"",
+											"    let etagHeader = postman.getResponseHeader(\"ETag\");",
+											"    pm.environment.set(\"readerEtag\", etagHeader); ",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{librarianToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_users_readers}}{{baseUrl}}/readers/2025/1",
+									"host": [
+										"{{host_users_readers}}{{baseUrl}}"
+									],
+									"path": [
+										"readers",
+										"2025",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get reader by phone number",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"OK\", function(){\r",
+											"\r",
+											"    pm.response.to.have.status(200); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{librarianToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host_users_readers}}{{baseUrl}}/readers?phoneNumber=919191919",
+									"host": [
+										"{{host_users_readers}}{{baseUrl}}"
+									],
+									"path": [
+										"readers"
+									],
+									"query": [
+										{
+											"key": "phoneNumber",
+											"value": "919191919"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
