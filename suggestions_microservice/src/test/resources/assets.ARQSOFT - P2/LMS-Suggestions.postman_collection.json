@@ -1,0 +1,55 @@
+{
+  "info": {
+    "_postman_id": "f12a3b45-d67e-4788-bd78-0bc91c82bfa2",
+    "name": "LMS-SuggestBook",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Suggest Book",
+      "item": [
+        {
+          "name": "As Reader",
+          "item": [
+            {
+              "name": "Suggest a New Book",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{readerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"isbn\": \"1234567890\"\n}"
+                },
+                "url": {
+                  "raw": "{{host_suggestions}}{{baseUrl}}/suggestions",
+                  "host": [
+                    "{{host_suggestions}}{{baseUrl}}"
+                  ],
+                  "path": [
+                    "suggestions"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
